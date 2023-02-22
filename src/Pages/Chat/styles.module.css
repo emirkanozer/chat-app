@@ -1,7 +1,7 @@
 .wrapper{
     width: 80vw;
     height: 95vh;
-    background-color: aqua;
+    display: flex;
 }
 
 .left{
@@ -9,4 +9,12 @@
     height: 95vh;
     overflow-y: auto;
     background-color: rgba(32,32,32,1);
+    border-right: 1px solid rgb(40,40,40);
+}
+
+.right{
+    width: calc(55vw - 1px);
+    height: 95vh;
+    overflow-y: auto;
+    background-color: rgba(32,32,32,0.3);
 }

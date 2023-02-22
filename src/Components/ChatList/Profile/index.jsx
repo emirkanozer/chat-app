@@ -1,18 +1,20 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Avatar } from "@chakra-ui/react";
 import React from "react";
-import { FaUser, FaUsers } from "react-icons/fa";
+import { FaUsers } from "react-icons/fa";
 import { MdMessage, MdMoreVert } from "react-icons/md";
 
 function Profile() {
   return (
     <Box
-      p={4}
+      px={4}
+      alignItems="center"
       display={"flex"}
       justifyContent={"space-between"}
       borderBottom={"1px solid rgb(40,40,40)"}
+      height="6vh"
     >
-      <Box padding={2} _hover={{ cursor: "pointer" }}>
-        <FaUser />
+      <Box _hover={{ cursor: "pointer" }}>
+        <Avatar src="https://bit.ly/sage-adebayo" />
       </Box>
       <Box display={"flex"} gap="1rem">
         <Box

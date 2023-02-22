@@ -1,5 +1,6 @@
 import React from "react";
 import ChatList from "../../Components/ChatList";
+import Message from "../../Components/Message";
 import styles from "./styles.module.css";
 function ChatPage() {
   return (
@@ -7,7 +8,9 @@ function ChatPage() {
       <div className={styles.left}>
         <ChatList />
       </div>
-      <div className={styles.right}></div>
+      <div className={styles.right}>
+        <Message />
+      </div>
     </div>
   );
 }
