@@ -1,0 +1,12 @@
+.wrapper{
+    width: 80vw;
+    height: 95vh;
+    background-color: aqua;
+}
+
+.left{
+    width: 25vw;
+    height: 95vh;
+    overflow-y: auto;
+    background-color: rgba(32,32,32,1);
+}
