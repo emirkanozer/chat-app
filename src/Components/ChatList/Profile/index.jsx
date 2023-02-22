@@ -5,7 +5,12 @@ import { MdMessage, MdMoreVert } from "react-icons/md";
 
 function Profile() {
   return (
-    <Box p={4} display={"flex"} justifyContent={"space-between"}>
+    <Box
+      p={4}
+      display={"flex"}
+      justifyContent={"space-between"}
+      borderBottom={"1px solid rgb(40,40,40)"}
+    >
       <Box padding={2} _hover={{ cursor: "pointer" }}>
         <FaUser />
       </Box>
