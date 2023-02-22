@@ -1,12 +1,14 @@
 import React from "react";
 import ChatItem from "./ChatItem";
+import Profile from "./Profile";
 import SearchFiled from "./SearchField";
 
 function ChatList() {
   return (
     <div>
-      <ChatItem />
+      <Profile />
       <SearchFiled />
+      <ChatItem />
     </div>
   );
 }
