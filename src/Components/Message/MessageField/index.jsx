@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Text } from "@chakra-ui/react";
+import { useAuth } from "../../../Services/AuthContexts/AuthContext";
 function MessageField() {
   return (
     <Box h={"calc(95vh - (12vh + 1px ))"} p={5} overflowY="auto">
