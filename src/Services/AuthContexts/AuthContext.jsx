@@ -1,26 +1,25 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchMe } from "../../Utils/api";
+// import { fetchMe } from "../../Utils/api";
 
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [isLogin, setLogin] = useState(false);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchMeAsync = async () => {
-      try {
-        const me = await fetchMe();
-        console.log(me);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchMeAsync = async () => {
+  //     try {
+  //       const me = await fetchMe();
+  //       console.log(me);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
 
-    fetchMeAsync();
-  }, []);
+  //   fetchMeAsync();
+  // }, []);
 
   const handleLogin = (value) => {
     if (value === "login") {

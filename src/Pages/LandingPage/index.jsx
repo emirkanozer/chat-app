@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useAuth } from "../../Services/AuthContexts/AuthContext";
 function LandingPage() {
   const navigate = useNavigate();
-  const { isLogin, setLogin, handleLogin } = useAuth();
+  const { setLogin, handleLogin } = useAuth();
 
   useEffect(() => {
     const accessToken = localStorage.getItem("access-token");
@@ -12,12 +12,9 @@ function LandingPage() {
 
     if (accessToken && refreshToken) {
       setLogin(true);
+      navigate("/messages");
     }
-  }, []);
-  console.log(isLogin);
-  if (isLogin) {
-    navigate("/messages");
-  }
+  }, [setLogin]);
 
   return (
     <div>
