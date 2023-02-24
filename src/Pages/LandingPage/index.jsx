@@ -14,7 +14,7 @@ function LandingPage() {
       setLogin(true);
       navigate("/messages");
     }
-  }, [setLogin]);
+  });
 
   return (
     <div>

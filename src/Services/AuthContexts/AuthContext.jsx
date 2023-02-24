@@ -18,9 +18,11 @@ export const AuthContextProvider = ({ children }) => {
         console.log(error);
       }
     };
-
-    fetchMeAsync();
-  }, []);
+    if (isLogin) {
+      fetchMeAsync();
+      console.log("çalıştı");
+    }
+  }, [isLogin]);
 
   const handleLogin = (value) => {
     if (value === "login") {

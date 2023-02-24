@@ -6,16 +6,19 @@ import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
 import { AuthContextProvider } from "./Services/AuthContexts/AuthContext";
 import { BrowserRouter } from "react-router-dom";
+import { FilterContextProvider } from "./Services/FilterContexts/FilterContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AuthContextProvider>
-        <ChakraProvider>
-          <App />
-        </ChakraProvider>
-      </AuthContextProvider>
+      <ChakraProvider>
+        <AuthContextProvider>
+          <FilterContextProvider>
+            <App />
+          </FilterContextProvider>
+        </AuthContextProvider>
+      </ChakraProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

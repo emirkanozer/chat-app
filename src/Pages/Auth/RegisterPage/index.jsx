@@ -18,7 +18,7 @@ function Register() {
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      username: "deneme",
+      username: "",
       password: "",
     },
     onSubmit: async (values) => {
@@ -55,7 +55,7 @@ function Register() {
               onChange={formik.handleChange}
               value={formik.values.username}
               type="text"
-              placeholder="Name"
+              placeholder="Username"
             />
           </FormControl>
 
