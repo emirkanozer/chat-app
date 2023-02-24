@@ -1,9 +1,18 @@
-import { Box, Avatar } from "@chakra-ui/react";
+import {
+  Box,
+  Avatar,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+} from "@chakra-ui/react";
 import React from "react";
-import { FaUsers } from "react-icons/fa";
 import { MdMessage, MdMoreVert } from "react-icons/md";
+import { useAuth } from "../../../Services/AuthContexts/AuthContext";
 
 function Profile() {
+  const { logout } = useAuth();
   return (
     <Box
       px={4}
@@ -16,24 +25,36 @@ function Profile() {
       <Box _hover={{ cursor: "pointer" }}>
         <Avatar src="https://bit.ly/sage-adebayo" />
       </Box>
-      <Box display={"flex"} gap="1rem">
+      <Box display={"flex"} alignItems="center" gap="1rem">
         <Box
-          padding={2}
-          _hover={{ cursor: "pointer", backgroundColor: "rgba(32,32,32,0.5)" }}
-        >
-          <FaUsers />
-        </Box>
-        <Box
-          padding={2}
           _hover={{ cursor: "pointer", backgroundColor: "rgba(32,32,32,0.5)" }}
         >
           <MdMessage />
         </Box>
+
         <Box
-          padding={2}
           _hover={{ cursor: "pointer", backgroundColor: "rgba(32,32,32,0.5)" }}
         >
-          <MdMoreVert />
+          <Menu>
+            <MenuButton
+              h="1rem"
+              w="1rem"
+              as={IconButton}
+              variant="none"
+              icon={<MdMoreVert />}
+            />
+            <MenuList border={"none"} backgroundColor={"black"}>
+              <MenuItem
+                backgroundColor={"black"}
+                _hover={{ backgroundColor: "rgb(32,32,32)" }}
+                onClick={() => {
+                  logout();
+                }}
+              >
+                Logout
+              </MenuItem>
+            </MenuList>
+          </Menu>
         </Box>
       </Box>
     </Box>

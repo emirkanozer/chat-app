@@ -1,9 +1,18 @@
-import { Box, Text, Avatar, IconButton } from "@chakra-ui/react";
-import React from "react";
-import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Avatar,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+} from "@chakra-ui/react";
 import { MdMoreVert } from "react-icons/md";
+import { useAuth } from "../../../Services/AuthContexts/AuthContext";
 
 function ChatItem() {
+  const { user } = useAuth();
   return (
     <Box
       display="flex"
@@ -24,7 +33,7 @@ function ChatItem() {
         borderBottom="1px solid rgb(40,40,40)"
       >
         <Box>
-          <Text fontSize={"1em"}>Yunus</Text>
+          <Text fontSize={"1em"}>{user}</Text>
           <Text fontSize={"xs"} mt={1} mb={2}>
             Deneme
           </Text>

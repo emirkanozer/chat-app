@@ -1,25 +1,26 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { fetchMe } from "../../Utils/api";
+import { fetchMe } from "../../Utils/api";
 
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [isLogin, setLogin] = useState(false);
+  const [user, setUser] = useState();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const fetchMeAsync = async () => {
-  //     try {
-  //       const me = await fetchMe();
-  //       console.log(me);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchMeAsync = async () => {
+      try {
+        const me = await fetchMe();
+        setUser(me.username);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-  //   fetchMeAsync();
-  // }, []);
+    fetchMeAsync();
+  }, []);
 
   const handleLogin = (value) => {
     if (value === "login") {
@@ -35,7 +36,14 @@ export const AuthContextProvider = ({ children }) => {
     localStorage.setItem("refresh-token", data.refreshToken);
   };
 
-  const values = { isLogin, setLogin, login, handleLogin };
+  const logout = () => {
+    setLogin(false);
+    localStorage.removeItem("access-token");
+    localStorage.removeItem("refresh-token");
+    navigate("/");
+  };
+
+  const values = { isLogin, user, setLogin, login, handleLogin, logout };
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };
