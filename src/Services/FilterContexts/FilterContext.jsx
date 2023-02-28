@@ -1,18 +1,28 @@
-import { createContext, useContext, useState } from "react";
-import { useAuth } from "../../Services/AuthContexts/AuthContext";
+import { createContext, useContext, useState, useEffect } from "react";
+import { fetchMessages, fetchSearch } from "../../Utils/api";
 
 const FilterContext = createContext();
 
 export const FilterContextProvider = ({ children }) => {
   const [filterText, setFilterText] = useState();
-  const { user } = useAuth();
+  const [filteredUsers, setFilteredUsers] = useState([]);
+
+  // useEffect(() => {
+  //   async() => {
+  //     const messages = fetchMessages()
+  //   }
+  //   if (filteredUsers.length === 0) {
+  //     setFilteredUsers([{}, {}]);
+  //   }
+  // });
+
   const handleChange = (value) => {
     setFilterText(value);
   };
 
-  const filteredChats = (inputText) => {
-    console.log(inputText);
-    return user.filter((username) => username.includes(inputText));
+  const filteredChats = async (inputText) => {
+    const users = await fetchSearch(inputText);
+    setFilteredUsers(users);
   };
 
   const values = { handleChange, filteredChats, filterText };

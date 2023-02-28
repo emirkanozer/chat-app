@@ -10,9 +10,12 @@ import {
 } from "@chakra-ui/react";
 import { MdMoreVert } from "react-icons/md";
 import { useAuth } from "../../../Services/AuthContexts/AuthContext";
+import { useFilter } from "../../../Services/FilterContexts/FilterContext";
 
 function ChatItem() {
   const { user } = useAuth();
+  const { filteredUsers } = useFilter();
+
   return (
     <Box
       display="flex"

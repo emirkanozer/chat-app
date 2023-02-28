@@ -5,7 +5,6 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Link,
   Text,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
@@ -34,13 +33,14 @@ function Register() {
     <div>
       <Box
         borderRadius={16}
-        p={16}
+        p={4}
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        flexDirection="column"
         bg={"rgba(32,32,32,0.5)"}
-        w={"30vw"}
-        h="60vh"
-        maxW="md"
-        mx="auto"
-        mt="8"
+        minH="50vh"
+        minW="20vw"
       >
         <Text textAlign={"center"} fontSize={"3xl"}>
           Register
@@ -83,9 +83,14 @@ function Register() {
             Register
           </Button>
 
-          <Text mt={2}>
+          <Text display="flex" gap={1} mt={2}>
             Do you have account?
-            <Link> Login</Link>
+            <Text
+              _hover={{ cursor: "pointer" }}
+              onClick={() => navigate("/login")}
+            >
+              Login
+            </Text>
           </Text>
         </form>
       </Box>

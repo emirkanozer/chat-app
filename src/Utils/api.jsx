@@ -25,3 +25,17 @@ export const fetchMe = async () => {
   const { data } = await axios.get(`${BASE_ENDPOINT}/user`);
   return data;
 };
+
+export const fetchSearch = async (username) => {
+  const { data } = await axios.get(
+    `${BASE_ENDPOINT}/user/search?q=${username}`
+  );
+  return data;
+};
+
+export const fetchMessages = async (user) => {
+  const { data } = await axios.get(
+    `${BASE_ENDPOINT}/chat/message?limit=10&page=1&chat=${user}`
+  );
+  return data;
+};

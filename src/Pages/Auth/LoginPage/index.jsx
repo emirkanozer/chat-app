@@ -13,7 +13,7 @@ import { useAuth } from "../../../Services/AuthContexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const { login, isLogin } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
   const goRegister = () => {
     navigate("/register");
@@ -35,18 +35,17 @@ function Login() {
   return (
     <div>
       <Box
+        p={4}
+        display={"flex"}
+        flexDirection="column"
         borderRadius={16}
-        p={16}
-        bg={"rgba(32,32,32,0.5)"}
-        w={"30vw"}
-        h="50vh"
-        maxW="md"
-        mx="auto"
-        mt="8"
+        bg={"rgba(32,32,32,0.75)"}
+        alignItems="center"
+        justifyContent={"center"}
+        minW="20vw"
+        minH="40vh"
       >
-        <Text textAlign={"center"} fontSize={"3xl"}>
-          Login
-        </Text>
+        <Text fontSize={"3xl"}>Login</Text>
         <form onSubmit={formik.handleSubmit}>
           <FormControl mt={6}>
             <FormLabel>Username</FormLabel>

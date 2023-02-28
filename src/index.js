@@ -7,6 +7,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { AuthContextProvider } from "./Services/AuthContexts/AuthContext";
 import { BrowserRouter } from "react-router-dom";
 import { FilterContextProvider } from "./Services/FilterContexts/FilterContext";
+import { MessageProvider } from "./Services/MessageContexts/MessageContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,9 +15,11 @@ root.render(
     <BrowserRouter>
       <ChakraProvider>
         <AuthContextProvider>
-          <FilterContextProvider>
-            <App />
-          </FilterContextProvider>
+          <MessageProvider>
+            <FilterContextProvider>
+              <App />
+            </FilterContextProvider>
+          </MessageProvider>
         </AuthContextProvider>
       </ChakraProvider>
     </BrowserRouter>

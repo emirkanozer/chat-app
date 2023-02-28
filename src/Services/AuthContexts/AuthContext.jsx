@@ -9,21 +9,6 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchMeAsync = async () => {
-      try {
-        const me = await fetchMe();
-        setUser(me.username);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    if (isLogin) {
-      fetchMeAsync();
-      console.log("çalıştı");
-    }
-  }, [isLogin]);
-
   const handleLogin = (value) => {
     if (value === "login") {
       navigate("/login");
@@ -45,7 +30,15 @@ export const AuthContextProvider = ({ children }) => {
     navigate("/");
   };
 
-  const values = { isLogin, user, setLogin, login, handleLogin, logout };
+  const values = {
+    isLogin,
+    user,
+    setLogin,
+    login,
+    handleLogin,
+    logout,
+    setUser,
+  };
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };
