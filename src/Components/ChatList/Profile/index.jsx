@@ -6,13 +6,14 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  Text,
 } from "@chakra-ui/react";
 import React from "react";
 import { MdMessage, MdMoreVert } from "react-icons/md";
 import { useAuth } from "../../../Services/AuthContexts/AuthContext";
 
 function Profile() {
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
   return (
     <Box
       px={4}
@@ -22,8 +23,15 @@ function Profile() {
       borderBottom={"1px solid rgb(40,40,40)"}
       height="6vh"
     >
-      <Box _hover={{ cursor: "pointer" }}>
-        <Avatar src="https://bit.ly/sage-adebayo" />
+      <Box
+        _hover={{ cursor: "pointer" }}
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        gap={2}
+      >
+        <Avatar name={user} />
+        <Text>{user}</Text>
       </Box>
       <Box display={"flex"} alignItems="center" gap="1rem">
         <Box

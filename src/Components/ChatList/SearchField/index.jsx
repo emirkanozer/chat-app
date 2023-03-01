@@ -1,10 +1,15 @@
 import { Box, InputGroup, InputLeftElement, Input } from "@chakra-ui/react";
-import React from "react";
 import { MdSearch } from "react-icons/md";
 import { useFilter } from "../../../Services/FilterContexts/FilterContext";
+import { useState } from "react";
 
 function SearchFiled() {
-  const { handleChange, filteredChats, filterText } = useFilter();
+  const { filteredChats } = useFilter();
+  const [filterText, setFilterText] = useState("");
+
+  const handleChange = (value) => {
+    setFilterText(value);
+  };
   return (
     <Box py={2} px={4}>
       <form

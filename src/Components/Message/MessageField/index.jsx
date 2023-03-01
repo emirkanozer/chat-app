@@ -1,6 +1,11 @@
 import React from "react";
 import { Box, Text } from "@chakra-ui/react";
+import { useMessage } from "../../../Services/MessageContexts/MessageContext";
+import { useAuth } from "../../../Services/AuthContexts/AuthContext";
 function MessageField() {
+  const { message } = useMessage();
+  const { user } = useAuth();
+  console.log(message);
   return (
     <Box
       h={"calc(95vh - (12vh + 1px ))"}
@@ -9,18 +14,20 @@ function MessageField() {
       p={5}
       overflowY="auto"
     >
-      <Box
-        borderRadius="lg"
-        backgroundColor={"gray.700"}
-        padding="0.5rem"
-        margin="0.5rem"
-        textAlign={"left"}
-        alignSelf={"flex-start"}
-        w="fit-content"
-        maxWidth="70%"
-      >
-        <Text color={"white"}>qweqweqweqwe</Text>
-      </Box>
+      {message.map((msg) => (
+        <Box
+          borderRadius="lg"
+          backgroundColor={"gray.700"}
+          padding="0.5rem"
+          margin="0.5rem"
+          alignSelf={msg.from === user ? "flex-end" : "flex-start"}
+          w="fit-content"
+          maxWidth="70%"
+          key={msg.id}
+        >
+          <Text color={"white"}> {msg.content} </Text>
+        </Box>
+      ))}
     </Box>
   );
 }

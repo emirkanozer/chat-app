@@ -4,12 +4,10 @@ import ChatList from "../../Components/ChatList";
 import Message from "../../Components/Message";
 import styles from "./styles.module.css";
 import { useAuth } from "../../Services/AuthContexts/AuthContext";
-import { fetchMe, fetchMessages } from "../../Utils/api";
-import { useMessage } from "../../Services/MessageContexts/MessageContext";
+import { fetchMe } from "../../Utils/api";
 
 function ChatPage() {
-  const { setUser, user } = useAuth();
-  const { setMessage, message } = useMessage();
+  const { setUser } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,13 +25,6 @@ function ChatPage() {
     fetchMeAsync();
   }, []);
 
-  useEffect(() => {
-    const getMsgAsync = async () => {
-      const getMessage = await fetchMessages(user);
-      setMessage(getMessage);
-    };
-    getMsgAsync();
-  }, [user]);
   return (
     <div className={styles.wrapper}>
       <div className={styles.left}>

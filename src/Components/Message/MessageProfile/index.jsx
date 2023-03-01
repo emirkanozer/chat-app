@@ -13,9 +13,7 @@ function MessageProfile() {
       height="6vh"
       alignItems={"center"}
     >
-      <Box w={"3rem"} h={"3rem"} borderRadius={"50%"}>
-        <Avatar src="https://bit.ly/sage-adebayo" />
-      </Box>
+      <Avatar w={12} src="https://bit.ly/sage-adebayo" />
       <Box
         alignItems={"center"}
         w="100%"

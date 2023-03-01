@@ -9,12 +9,25 @@ import {
   MenuItem,
 } from "@chakra-ui/react";
 import { MdMoreVert } from "react-icons/md";
+import { fetchMessages } from "../../../Utils/api";
+import { useMessage } from "../../../Services/MessageContexts/MessageContext";
 import { useAuth } from "../../../Services/AuthContexts/AuthContext";
-import { useFilter } from "../../../Services/FilterContexts/FilterContext";
 
-function ChatItem() {
+function ChatItem({ users }) {
   const { user } = useAuth();
-  const { filteredUsers } = useFilter();
+  const { setMessage } = useMessage();
+
+  const getMsgAsync = async () => {
+    const getMessage = await fetchMessages(users.username);
+    const userMsg = getMessage.results.filter((msj) => {
+      return (
+        (msj.to === user || msj.to === users.username) &&
+        (msj.from === user || msj.from === users.username)
+      );
+    });
+    console.log(userMsg);
+    setMessage(userMsg.reverse());
+  };
 
   return (
     <Box
@@ -22,10 +35,14 @@ function ChatItem() {
       w={"100%"}
       alignItems="center"
       _hover={{ cursor: "pointer", backgroundColor: "rgb(42,42,42)" }}
+      key={users._id}
+      onClick={() => {
+        getMsgAsync();
+      }}
     >
       <Box p={4}>
         <Box borderRadius="50%" w="3rem" h="3rem">
-          <Avatar src="https://bit.ly/sage-adebayo" />
+          <Avatar name={users.username} />
         </Box>
       </Box>
       <Box
@@ -36,7 +53,7 @@ function ChatItem() {
         borderBottom="1px solid rgb(40,40,40)"
       >
         <Box>
-          <Text fontSize={"1em"}>{user}</Text>
+          <Text fontSize={"1em"}>{users.username}</Text>
           <Text fontSize={"xs"} mt={1} mb={2}>
             Deneme
           </Text>

@@ -2,8 +2,14 @@ import { Box, Input, InputGroup } from "@chakra-ui/react";
 import React from "react";
 import { MdEmojiEmotions } from "react-icons/md";
 import { FaPaperclip } from "react-icons/fa";
+import { useMessage } from "../../../Services/MessageContexts/MessageContext";
+import { useAuth } from "../../../Services/AuthContexts/AuthContext";
+import { sendMessage } from "../../../Utils/api";
 
 function MessageInput() {
+  const { user } = useAuth();
+  const { text, setText } = useMessage();
+  const emre = "emrekb";
   return (
     <Box
       padding={2}
@@ -21,21 +27,31 @@ function MessageInput() {
       <Box _hover={{ cursor: "pointer" }} p={2}>
         <FaPaperclip style={{ fontSize: "1.2em" }} />
       </Box>
-
-      <InputGroup
-        border={"1px solid rgb(42,42,42)"}
-        borderRadius="8px"
-        backgroundColor={"rgb(42,42,42)"}
+      <form
+        style={{ width: "100%" }}
+        onSubmit={(e) => {
+          e.preventDefault();
+          sendMessage(text, emre);
+        }}
       >
-        <Input
-          type="text"
-          placeholder="
-          Write a message "
-          outline="none"
-          focusBorderColor="transparent"
-          border={"none"}
-        />
-      </InputGroup>
+        <InputGroup
+          border={"1px solid rgb(42,42,42)"}
+          borderRadius="8px"
+          backgroundColor={"rgb(42,42,42)"}
+        >
+          <Input
+            type="text"
+            placeholder="Write a message "
+            outline="none"
+            focusBorderColor="transparent"
+            border={"none"}
+            value={text}
+            onChange={(e) => {
+              setText(e.target.value);
+            }}
+          />
+        </InputGroup>
+      </form>
     </Box>
   );
 }

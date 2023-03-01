@@ -39,3 +39,7 @@ export const fetchMessages = async (user) => {
   );
   return data;
 };
+
+export const sendMessage = async (msg, user) => {
+  axios.post(`${BASE_ENDPOINT}/chat/message/${user}`, { content: msg });
+};
