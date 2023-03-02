@@ -34,9 +34,23 @@ export const fetchSearch = async (username) => {
 };
 
 export const fetchMessages = async (user) => {
-  const { data } = await axios.get(
-    `${BASE_ENDPOINT}/chat/message?limit=15&page=1&chat=${user}`
-  );
+  let page = 1;
+  let data;
+
+  do {
+    const { data: responseData } = await axios.get(
+      `${BASE_ENDPOINT}/chat/message?limit=15&page=${page}&chat=${user}`
+    );
+
+    data = responseData;
+
+    if (data.total > data.page * data.limit) {
+      page++;
+    } else {
+      break;
+    }
+  } while (true);
+
   return data;
 };
 
