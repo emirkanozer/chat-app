@@ -1,8 +1,10 @@
 import { Box, Text, Avatar } from "@chakra-ui/react";
 import React from "react";
 import { MdMoreVert } from "react-icons/md";
+import { useMessage } from "../../../Services/MessageContexts/MessageContext";
 
 function MessageProfile() {
+  const { profile } = useMessage();
   return (
     <Box
       w={"100%"}
@@ -13,7 +15,7 @@ function MessageProfile() {
       height="6vh"
       alignItems={"center"}
     >
-      <Avatar w={12} src="https://bit.ly/sage-adebayo" />
+      <Avatar w={12} name={profile.username} />
       <Box
         alignItems={"center"}
         w="100%"
@@ -22,10 +24,7 @@ function MessageProfile() {
         px={4}
       >
         <Box>
-          <Text>Yunus</Text>
-          <Text mt={1} fontSize={"xs"}>
-            Son görülme
-          </Text>
+          <Text>{profile.username}</Text>
         </Box>
         <Box
           _hover={{ cursor: "pointer ", backgroundColor: "rgb(32,32,32)" }}

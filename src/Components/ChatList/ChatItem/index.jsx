@@ -16,7 +16,7 @@ import { useEffect } from "react";
 
 function ChatItem({ users }) {
   const { user } = useAuth();
-  const { setMessage, setSendTo } = useMessage();
+  const { setMessage, setSendTo, setProfile } = useMessage();
 
   useEffect(() => {
     setSendTo(users.username);
@@ -30,7 +30,7 @@ function ChatItem({ users }) {
         (msj.from === user || msj.from === users.username)
       );
     });
-    console.log(userMsg);
+    // console.log(userMsg);
     setMessage(userMsg.reverse());
   };
 
@@ -43,6 +43,7 @@ function ChatItem({ users }) {
       key={users._id}
       onClick={() => {
         getMsgAsync();
+        setProfile(users);
       }}
     >
       <Box p={4}>

@@ -7,7 +7,7 @@ import { Box } from "@chakra-ui/react";
 
 function ChatList() {
   const { filteredUsers } = useFilter();
-  console.log(filteredUsers);
+
   return (
     <div>
       <Profile />

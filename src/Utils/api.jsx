@@ -35,7 +35,7 @@ export const fetchSearch = async (username) => {
 
 export const fetchMessages = async (user) => {
   const { data } = await axios.get(
-    `${BASE_ENDPOINT}/chat/message?limit=10&page=1&chat=${user}`
+    `${BASE_ENDPOINT}/chat/message?limit=15&page=1&chat=${user}`
   );
   return data;
 };
