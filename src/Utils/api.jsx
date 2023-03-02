@@ -41,8 +41,7 @@ export const fetchMessages = async (user) => {
     const { data: responseData } = await axios.get(
       `${BASE_ENDPOINT}/chat/message?limit=15&page=${page}&chat=${user}`
     );
-    console.log(responseData);
-    // data = [...data, responseData.results];
+
     responseData.results.forEach((msg) => {
       data.push(msg);
     });
@@ -53,7 +52,6 @@ export const fetchMessages = async (user) => {
       break;
     }
   } while (true);
-  console.log(data);
   return data;
 };
 

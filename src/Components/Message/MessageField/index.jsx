@@ -5,7 +5,7 @@ import { useAuth } from "../../../Services/AuthContexts/AuthContext";
 function MessageField() {
   const { message } = useMessage();
   const { user } = useAuth();
-  console.log(message);
+  // console.log(message);
   return (
     <Box
       h={"calc(95vh - (12vh + 1px ))"}

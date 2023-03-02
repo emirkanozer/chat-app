@@ -9,23 +9,21 @@ export const MessageProvider = ({ children }) => {
   const [sendTo, setSendTo] = useState("");
   const [profile, setProfile] = useState([]);
 
-  // const socket = io(`${process.env.REACT_APP_WS}`, {
-  //   auth: {
-  //     token: `${localStorage.getItem("access-token")}`,
-  //   },
-  // });
+  const socket = io(`${process.env.REACT_APP_WS}`, {
+    extraHeaders: {
+      authorization: `Bearer ${localStorage.getItem("access-token")}`,
+    },
+  });
 
-  // const listen = () => {
-  //   socket.on("message", (message) => {
-  //     console.log(message);
-  //   });
-  // };
+  socket.on("message", (msg) => {
+    console.log(msg);
+    setMessage([msg, ...message]);
+  });
 
   const values = {
     message,
     setMessage,
     text,
-    // listen,
     setText,
     sendTo,
     setSendTo,
