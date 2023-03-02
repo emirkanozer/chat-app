@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import {
   Box,
   Button,
@@ -15,6 +15,12 @@ import { useNavigate } from "react-router-dom";
 function Register() {
   const { login } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const isLogin = localStorage.getItem("logged-in");
+    if (isLogin) navigate("/messages");
+  });
+
   const formik = useFormik({
     initialValues: {
       username: "",

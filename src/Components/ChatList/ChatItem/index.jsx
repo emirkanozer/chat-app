@@ -12,10 +12,15 @@ import { MdMoreVert } from "react-icons/md";
 import { fetchMessages } from "../../../Utils/api";
 import { useMessage } from "../../../Services/MessageContexts/MessageContext";
 import { useAuth } from "../../../Services/AuthContexts/AuthContext";
+import { useEffect } from "react";
 
 function ChatItem({ users }) {
   const { user } = useAuth();
-  const { setMessage } = useMessage();
+  const { setMessage, setSendTo } = useMessage();
+
+  useEffect(() => {
+    setSendTo(users.username);
+  });
 
   const getMsgAsync = async () => {
     const getMessage = await fetchMessages(users.username);

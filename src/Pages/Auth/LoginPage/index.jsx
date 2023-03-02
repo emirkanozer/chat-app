@@ -6,7 +6,7 @@ import {
   Input,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
+import { useEffect } from "react";
 import { useFormik } from "formik";
 import { fetchLogin } from "../../../Utils/api";
 import { useAuth } from "../../../Services/AuthContexts/AuthContext";
@@ -15,9 +15,16 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const isLogin = localStorage.getItem("logged-in");
+    if (isLogin) navigate("/messages");
+  });
+
   const goRegister = () => {
     navigate("/register");
   };
+
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -32,6 +39,7 @@ function Login() {
       navigate("/messages");
     },
   });
+
   return (
     <div>
       <Box

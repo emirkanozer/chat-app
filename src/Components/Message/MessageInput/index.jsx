@@ -3,13 +3,10 @@ import React from "react";
 import { MdEmojiEmotions } from "react-icons/md";
 import { FaPaperclip } from "react-icons/fa";
 import { useMessage } from "../../../Services/MessageContexts/MessageContext";
-import { useAuth } from "../../../Services/AuthContexts/AuthContext";
 import { sendMessage } from "../../../Utils/api";
 
 function MessageInput() {
-  const { user } = useAuth();
-  const { text, setText } = useMessage();
-  const emre = "emrekb";
+  const { text, setText, sendTo } = useMessage();
   return (
     <Box
       padding={2}
@@ -31,7 +28,7 @@ function MessageInput() {
         style={{ width: "100%" }}
         onSubmit={(e) => {
           e.preventDefault();
-          sendMessage(text, emre);
+          sendMessage(text, sendTo);
         }}
       >
         <InputGroup

@@ -6,6 +6,7 @@ const MessageContext = createContext();
 export const MessageProvider = ({ children }) => {
   const [message, setMessage] = useState([]);
   const [text, setText] = useState("");
+  const [sendTo, setSendTo] = useState("");
 
   const socket = io(`${process.env.REACT_APP_WS}`, {
     auth: {
@@ -19,7 +20,15 @@ export const MessageProvider = ({ children }) => {
     });
   };
 
-  const values = { message, setMessage, text, listen, setText };
+  const values = {
+    message,
+    setMessage,
+    text,
+    listen,
+    setText,
+    sendTo,
+    setSendTo,
+  };
 
   return (
     <MessageContext.Provider value={values}>{children}</MessageContext.Provider>

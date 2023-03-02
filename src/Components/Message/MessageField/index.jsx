@@ -23,7 +23,7 @@ function MessageField() {
           alignSelf={msg.from === user ? "flex-end" : "flex-start"}
           w="fit-content"
           maxWidth="70%"
-          key={msg.id}
+          key={msg._id}
         >
           <Text color={"white"}> {msg.content} </Text>
         </Box>
