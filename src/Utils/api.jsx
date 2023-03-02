@@ -35,22 +35,25 @@ export const fetchSearch = async (username) => {
 
 export const fetchMessages = async (user) => {
   let page = 1;
-  let data;
+  let data = [];
 
   do {
     const { data: responseData } = await axios.get(
       `${BASE_ENDPOINT}/chat/message?limit=15&page=${page}&chat=${user}`
     );
+    console.log(responseData);
+    // data = [...data, responseData.results];
+    responseData.results.forEach((msg) => {
+      data.push(msg);
+    });
 
-    data = responseData;
-
-    if (data.total > data.page * data.limit) {
+    if (responseData.total > responseData.page * responseData.limit) {
       page++;
     } else {
       break;
     }
   } while (true);
-
+  console.log(data);
   return data;
 };
 

@@ -24,7 +24,7 @@ function ChatItem({ users }) {
 
   const getMsgAsync = async () => {
     const getMessage = await fetchMessages(users.username);
-    const userMsg = getMessage.results.filter((msj) => {
+    const userMsg = getMessage.filter((msj) => {
       return (
         (msj.to === user || msj.to === users.username) &&
         (msj.from === user || msj.from === users.username)

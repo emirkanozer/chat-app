@@ -24,6 +24,7 @@ function MessageField() {
           w="fit-content"
           maxWidth="70%"
           key={msg._id}
+          style={{ scrollbarColor: "red" }}
         >
           <Text color={"white"}> {msg.content} </Text>
         </Box>
